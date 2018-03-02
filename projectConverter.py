@@ -9,7 +9,7 @@ def convertToJars(path):
             if classpathentry.attrib['kind'] == 'src' and classpathentry.attrib['path'] != 'src' and 'cz' not in classpathentry.attrib['path']:
                 classpathentry.set('kind','var')
                 classpathentry.set('path','DIGX_LIB' + classpathentry.attrib['path'] + '.jar')
-        data.write(file)
+        data.write(file,xml_declaration=True)
 
 def convertToSource(path):
     for file in glob.iglob(path+'\**\.classpath',recursive=True):
@@ -20,7 +20,7 @@ def convertToSource(path):
                 classpathentry.set('kind','src')
                 path = classpathentry.attrib['path'].replace('DIGX_LIB','').replace('.jar','')
                 classpathentry.set('path',path)
-        data.write(file)
+        data.write(file, xml_declaration=True)
 
 
 
